@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Результат</h1>
+    <p>Час завантаження: {{ object.upload_date }}</p>
+    <img src="{{ object.image.url }}" alt="завантажене зображення" style="max-width: 400px;">
+    <h3>Інференс</h3>
+    <pre>{{ object.result }}</pre>
+    <a href="{% url "recognition_images:home" %}">Завантажити ще</a>
+{% endblock %}
