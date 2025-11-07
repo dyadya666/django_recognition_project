@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Результат обробки</h1>
+    <p>Статус: {{ object.status }}</p>
+    {% if object.status == 'done' %}
+        <ul>
+            {% for r in object.result %}
+                <li>Кадр: {{ r.frame }} - {{ r.label }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ object.error }}</p>
+    {% endif %}
+    <a href="{% url 'recognition_video:home' %}">Завантажити інше</a>
+{% endblock %}

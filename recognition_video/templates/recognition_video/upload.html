@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Завантажити відео</h1>
+    <form action="{% url 'recognition_video:home' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Завантажити та розпізнати</button>
+    </form>
+{% endblock %}

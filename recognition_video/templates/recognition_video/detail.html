@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Відео #{{ video.pk }}</h1>
+
+    <p><strong>Завантажено</strong>: {{ video.upload_date }}</p>
+    <p><strong>Статус</strong>: <span id="status">{{ video.status }}</span></p>
+
+    <div>
+        <video width="640" controls>
+            <source src="{{ video.video.url }}" type="video/mp4">
+            Ваш браузер не підтримує відтворення відео.
+        </video>
+    </div>
+
+    <div id="results-block">
+        {% if video.status == 'done' %}
+            <h3>Результати</h3>
+            <ul>
+                {% for r in video.result %}
+                    <li>Кадр {{ r.frame }} - {{ r.label }}{% if r.confidence %} ({{ r.confidence|floatformat:2 }}){% endif %}</li>
+                {% endfor %}
+            </ul>
+        {% elif video.status == 'processing' or video.status == 'pending' %}
+            <p>Обробка триває. Перейти на сторінку прогресу для оновлення: 
+                <a href="{% url 'recognition_video:progress' video.pk %}">Прогрес</a>
+            </p>
+        {% elif video.status == 'error' %}
+            <p style="color: crimson;">Помилка: {{ video.error }}</p>
+        {% else %}
+            <p>Результату немає.</p>
+        {% endif %}
+    </div>
+
+    <p><a href="{% url 'recognition_video:home' %}">Завантажити ще</a></p>
+{% endblock %}

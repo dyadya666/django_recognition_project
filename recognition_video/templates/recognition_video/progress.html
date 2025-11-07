@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Обробка відео</h1>
+
+    <p><strong>Статус</strong>: <span id="status">{{ object.video }}</span></p>
+    <p id="error" style="color: crimson; display: none;"></p>
+
+    <div id="results" style="display: none;">
+        <h3>Результати</h3>
+        <ul id="results-list"></ul>
+    </div>
+
+    <p>
+        <a id="back-link" href="{% url 'recognition_video:home' %}">
+            Завантажити інше
+        </a>
+        <a id="detail-link" href="{% url 'recognition_video:detail' object.pk %}" style="margin-left: 1rem; display: none;">
+            Перейти на сторінку відео
+        </a>
+    </p>
+
+    <script>
+        window.VIDEO_PK = {{ object.pk }};
+        window.STATUS_URL = "{% url 'recognition_video:status_api' object.pk %}";
+    </script>
+    <script src="{% static 'recognition_video/js/recognition-video.js' %}"></script>
+{% endblock %}
