@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Аудіо: #{{ audio.pk }}</h1>
+    <p><strong>Статус:</strong> {{ audio.status }}</p>
+    <audio controls>
+        <source src="{{ audio.audio.url }}" type="audio/wav">
+        Ваш браузер не підтримує аудіо.
+    </audio>
+
+    {% if audio.status == 'Done' %}
+        <h1>Результат</h1>
+        <p><strong>Клас</strong>: {{ audio.result.label }}</p>
+        <p><strong>Ймовірність</strong>: {{ audio.result.confidence|floatformat:2 }}</p>
+    {% elif audio.status == 'Error' %}
+        <p style="color: crimson;">Помилка: {{ audio.error }}</p>
+    {% else %}
+        <p>Обробка триває...</p>
+    {% endif %}
+
+    <p><a href="{% url 'recognition_audio:home' %}">Завантажити інше</a></p>
+{% endblock %}
