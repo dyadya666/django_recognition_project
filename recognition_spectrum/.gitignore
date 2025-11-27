@@ -1,2 +1,36 @@
-*
-!.gitignore
+# django_recognition_project
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Django
+db.sqlite3
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.coverage
+*.env
+.env
+.env.*
+
+# Media and static
+/media/
+staticfiles/
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Virtual environment
+venv/
