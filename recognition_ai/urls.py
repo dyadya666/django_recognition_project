@@ -24,6 +24,7 @@ urlpatterns = [
     path('images/', include('recognition_images.urls')),
     path('videos/', include('recognition_video.urls')),
     path('audio/', include('recognition_audio.urls')),
+    path('signals/', include('recognition_spectrum.urls')),
 ]
 
 if settings.DEBUG:

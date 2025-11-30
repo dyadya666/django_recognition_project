@@ -1,8 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <title>{% block title %}Recignition AI{% endblock %}</title>
 </head>
 <body>
@@ -10,10 +13,12 @@
         <a href="{% url 'recognition_images:home' %}">Images</a>
         <a href="{% url 'recognition_video:home' %}">Video</a>
         <a href="{% url 'recognition_audio:home' %}">Audio</a>
-        <a href="/spectrum/">Spectrum</a>
+        <a href="{% url 'recognition_spectrum:home' %}">Spectrum</a>
     </nav>
     <main>
         {% block content %}{% endblock %}
+    <!-- Bootstrap JS -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     </main>
 </body>
 </html>

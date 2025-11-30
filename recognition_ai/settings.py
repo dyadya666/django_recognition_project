@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'recognition_images.apps.RecognitionImagesConfig',
     'recognition_video.apps.RecognitionVideoConfig',
     'recognition_audio.apps.RecognitionAudioConfig',
+    'recognition_spectrum.apps.RecognitionSpectrumConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,7 +126,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'recognition_images' / 'static',
 ]
 
 # Default primary key field type
