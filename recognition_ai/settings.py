@@ -125,7 +125,6 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
-    BASE_DIR / 'recognition_images' / 'static',
 ]
 
 # Default primary key field type
