@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Розпізнавання елементів спектру сигналу</h2>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Файл: {{ file }}</h5>
+            <p><strong>Статус:</strong> {{ object.get_status_display }}</p>
+            <p><strong>Дата завантаження:</strong> {{ object.upload_date }}</p>
+        </div>
+    </div>
+
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Результати аналізу</h5>
+            <p><strong>Домінантні частоти:</strong></p>
+            <ul>
+                {% for freq in result.dominant_frequencies %}
+                    <li>{{ freq }} Hz</li>
+                {% endfor %}
+            </ul>
+            <p><strong>Максимальна амплітуда:</strong> {{ result.max_amplitude }}</p>
+            <p><strong>Середня амплітуда:</strong> {{ result.mean_amplitude }}</p>
+        </div>
+    </div>
+
+    {% if spectrogram %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Спектрограма</h5>
+                <img src="/media/{{ spectrogram }}" alt="Spectrogram" class="img-fluid">
+            </div>
+        </div>
+    {% endif %}
+
+    <a href="{% url 'recognition_spectrum:home' %}" class="btn btn-primary">Завантажити інший сигнал</a>
+</div>
+{% endblock %}
