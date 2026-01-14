@@ -1,13 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'recognition_ocr/css/style_ocr.css' %}">
+{% endblock %}
+
 {% block content %}
 
-  {% if object.status == "processing" %}
-    <p>Обробка триває... Оновіть сторінку через кілька секунд.</p>
-  {% elif object.status == "done" %}
-    <h2>Розпізнаний текст</h2>
-    <pre>{{ object.extracted_text }}</pre>
-  {% elif object.status == "error" %}
-    <p>Сталася помилка: {{ document.error_message }}</p>
-  {% endif %}
+  <div id="status-block">
+    <p>Статус: <span id="status">{{ object.status }}</span></p>
+    {% if object.status == "processing" %}
+      <p>Обробка триває... Зачекайте кілька секунд.</p>
+    {% endif %}
+  </div>
+
+  <div id="result"></div>
+
+  <script>
+  function checkStatus() {
+      fetch("/ocr/status/{{ object.pk }}/")
+          .then(response => response.json())
+          .then(data => {
+              document.getElementById("status").innerText = data.status;
+
+              if (data.status === "done") {
+                  document.getElementById("result").innerHTML =
+                      "<pre>" + data.text + "</pre>";
+              }
+
+              if (data.status === "error") {
+                  document.getElementById("result").innerHTML =
+                      "<p style='color:red;'>Помилка: " + data.error + "</p>";
+              }
+
+              // Якщо ще обробляється — перевіряємо знову
+              if (data.status === "processing") {
+                  setTimeout(checkStatus, 2000);
+              }
+          });
+  }
+
+  // Запускаємо перевірку через 2 секунди
+  setTimeout(checkStatus, 2000);
+  </script>
 
 {% endblock %}

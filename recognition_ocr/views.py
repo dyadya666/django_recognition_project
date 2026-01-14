@@ -1,5 +1,6 @@
 import django_rq
 
+from django.http import JsonResponse
 from django.views.generic.edit import FormView
 from django.views.generic.detail import DetailView
 from django.urls import reverse
@@ -30,3 +31,13 @@ class DocumentUploadView(FormView):
 class DocumentDetailView(DetailView):
     model = UploadedDocument
     template_name = "recognition_ocr/detail.html"
+
+
+def ocr_status(request, pk):
+    doc = UploadedDocument.objects.get(pk=pk)
+
+    return JsonResponse({
+        'status': doc.status,
+        'text': doc.extracted_text,
+        'error': doc.error_message
+    })

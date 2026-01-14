@@ -1,0 +1,12 @@
+#result {
+    max-width: 700px;           /* обмежує ширину */
+    margin: 20px auto;          /* центрує блок */
+    padding: 15px;
+    background: #f7f7f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: "Courier New", monospace;
+    white-space: pre-wrap;      /* переносить текст */
+    word-wrap: break-word;      /* ламає довгі слова */
+    line-height: 1.5;
+}
