@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'recognition_video.apps.RecognitionVideoConfig',
     'recognition_audio.apps.RecognitionAudioConfig',
     'recognition_spectrum.apps.RecognitionSpectrumConfig',
+    'recognition_ocr.apps.RecognitionOcrConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
