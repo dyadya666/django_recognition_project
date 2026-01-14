@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
-  <h2>Розпізнаний текст</h2>
-  <pre>{{ object.extracted_text }}</pre>
+
+  {% if object.status == "processing" %}
+    <p>Обробка триває... Оновіть сторінку через кілька секунд.</p>
+  {% elif object.status == "done" %}
+    <h2>Розпізнаний текст</h2>
+    <pre>{{ object.extracted_text }}</pre>
+  {% elif object.status == "error" %}
+    <p>Сталася помилка: {{ document.error_message }}</p>
+  {% endif %}
+
 {% endblock %}

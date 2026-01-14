@@ -1,7 +1,10 @@
+import django_rq
 import os
 import pytesseract
 
 from PIL import Image
+
+from .models import UploadedDocument
 
 
 def extract_text(file_path):
