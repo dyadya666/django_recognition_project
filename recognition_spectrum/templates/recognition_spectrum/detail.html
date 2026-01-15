@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'recognition_spectrum/css/style_spectrum.css' %}">
+{% endblock %}
 {% block content %}
 <div class="container mt-4">
     <h2>Розпізнавання елементів спектру сигналу</h2>

@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'recognition_video.apps.RecognitionVideoConfig',
     'recognition_audio.apps.RecognitionAudioConfig',
     'recognition_spectrum.apps.RecognitionSpectrumConfig',
+    'recognition_ocr.apps.RecognitionOcrConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_rq',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +134,12 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+RQ_QUEUES = {
+    "default": {
+        "HOST": "localhost",
+        "PORT": 6379,
+        "DB": 0,
+        "DEFAULT_TIMEOUT": 600,  # час обробки OCR
+    }
+}

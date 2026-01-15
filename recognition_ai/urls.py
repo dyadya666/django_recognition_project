@@ -25,6 +25,8 @@ urlpatterns = [
     path('videos/', include('recognition_video.urls')),
     path('audio/', include('recognition_audio.urls')),
     path('signals/', include('recognition_spectrum.urls')),
+    path('ocr/', include('recognition_ocr.urls')),
+    path('django-rq/', include('django_rq.urls')),
 ]
 
 if settings.DEBUG:
